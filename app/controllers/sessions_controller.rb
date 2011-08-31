@@ -1,6 +1,7 @@
 class SessionsController < ApplicationController
 
   def create
+    #raise request.env['omniauth.auth'].to_yaml
     flash[:notice] = "Successfully logged in"
     session[:name] = request.env['omniauth.auth']['user_info']['name']
     session[:uid] = request.env['omniauth.auth']['uid']
