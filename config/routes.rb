@@ -1,4 +1,10 @@
 TftAuthApp::Application.routes.draw do
+  get "authentications/create"
+
+  get "authentications/index"
+
+  get "authentications/destroy"
+
   resources :notes
 
   # The priority is based upon order of creation:
