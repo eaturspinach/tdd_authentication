@@ -3,12 +3,9 @@ class AuthenticationsController < ApplicationController
     omniauth = request.env["omniauth.auth"]
     authentication = Authentication.find_by_provider_and_uid(omniauth["provider"],omniauth["uid"])
     if authentication
-      puts "+++++++++ 1"
-      # flash[:notice] = "Signed in successfully"
+      flash[:notice] = "Signed in successfully"
       redirect_to root_path
     else
-      puts "+++++++++ 2"
-      
       user = User.new
       user.authentications.build(:provider => omniauth["provider"], :uid => omniauth["uid"])
       user.name = omniauth["user_info"]["name"]
@@ -22,6 +19,7 @@ class AuthenticationsController < ApplicationController
   end
 
   def index
+    
   end
 
   def destroy

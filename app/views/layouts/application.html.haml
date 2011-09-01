@@ -19,10 +19,17 @@
           %div
             = image_tag session[:avatar]
           %div
+            = session[:provider]
+          %div
             = link_to "Sign out", sign_out_path
         - else
-          = link_to "Sign in with Twitter", '/auth/twitter'
-
+          %div
+            = link_to "Sign in with Twitter", '/auth/twitter'
+          %div
+            = link_to "Sign in with Facebook", '/auth/facebook'
+          %div
+            = link_to "Sign in with LinkedIn", '/auth/linked_in'
+          
       .flash
         - flash.each do |name, msg|
           = content_tag :div, msg, :id => "flash_#{name}"
