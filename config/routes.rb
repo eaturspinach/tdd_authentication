@@ -10,6 +10,8 @@ TftAuthApp::Application.routes.draw do
   match '/auth/:provider/callback' => 'authentications#create'
   match '/auth/failure' => 'sessions#failure'
   match 'sign_out' => 'sessions#destroy'
+  
+  get "pages/home"
 
-  root :to => "notes#index"
+  root :to => "pages#home"
 end

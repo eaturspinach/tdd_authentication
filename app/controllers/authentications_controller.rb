@@ -5,13 +5,13 @@ class AuthenticationsController < ApplicationController
     authentication = Authentication.find_by_provider_and_uid(omniauth["provider"],omniauth["uid"])
     if authentication
       flash[:notice] = "Signed in successfully"
-      redirect_to root_path
+      redirect_to notes_path
     else
       user = User.new
       user.authentications.build(:provider => omniauth["provider"], :uid => omniauth["uid"])
       user.name = omniauth["user_info"]["name"]
       user.save!
-      redirect_to root_path
+      redirect_to notes_path
     end
     session[:name] = omniauth["user_info"]["name"]
     session[:uid] = omniauth["uid"]
