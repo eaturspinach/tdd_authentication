@@ -1,14 +1,16 @@
-- title "Notes"
+- if session[:uid]
 
-%table
-  %tr
-    %th Title
-    %th Body
-  - for note in @notes
+  - title "Notes"
+
+  %table
     %tr
-      %td= note.title
-      %td= note.body
-      %td= link_to 'Edit', edit_note_path(note)
-      %td= link_to 'Destroy', note, :confirm => 'Are you sure?', :method => :delete
+      %th Title
+      %th Body
+    - for note in @notes
+      %tr
+        %td= note.title
+        %td= note.body
+        %td= link_to 'Edit', edit_note_path(note)
+        %td= link_to 'Destroy', note, :confirm => 'Are you sure?', :method => :delete
 
-%p= link_to "New Note", new_note_path
+  %p= link_to "New Note", new_note_path
