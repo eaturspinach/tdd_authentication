@@ -1,6 +1,8 @@
 class NotesController < ApplicationController
   def index
-    @notes = Note.all
+    authentication = Authentication.find_by_uid(session[:uid])
+    user = User.find_by_id(authentication[:user_id])
+    @notes = user.notes
   end
 
   def new
@@ -8,7 +10,10 @@ class NotesController < ApplicationController
   end
 
   def create
+    authentication = Authentication.find_by_uid(session[:uid])
+    user = User.find_by_id(authentication[:user_id])
     @note = Note.new(params[:note])
+    @note.user_id = user.id
     if @note.save
       redirect_to notes_url, :notice => "Successfully created note."
     else
